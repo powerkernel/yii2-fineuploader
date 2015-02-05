@@ -1,8 +1,7 @@
 <!--
     This is a document you can use when you start building the page that will contain
     one or more Fine Uploader UI instances.  A default template that can be customized
-    is located in the text/template script tag below.  This template enabled the thumbnail/preview
-    feature.
+    is located in the text/template script tag below.
 
     Please see http://docs.fineuploader.com/features/styling.html for information
     on how to customize this default template.
@@ -11,9 +10,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="../../custom.fineuploader-{VERSION}.css" rel="stylesheet">
-    <script src="../../custom.fineuploader-{VERSION}.js"></script>
-    <script type="text/template" id="qq-simple-thumbnails-template">
+    <link href="../../fine-uploader-{VERSION}.css" rel="stylesheet">
+    <script src="../../fine-uploader-{VERSION}.js"></script>
+    <script type="text/template" id="qq-template">
         <div class="qq-uploader-selector qq-uploader">
             <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
                 <div class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
@@ -34,7 +33,6 @@
                         <div class="qq-progress-bar-selector qq-progress-bar"></div>
                     </div>
                     <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                    <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
                     <span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
                     <span class="qq-upload-file-selector qq-upload-file"></span>
                     <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
@@ -48,7 +46,7 @@
         </div>
     </script>
 
-    <title>Fine Uploader default UI with thumbnails</title>
+    <title>Fine Uploader default UI</title>
 </head>
 <body>
 
