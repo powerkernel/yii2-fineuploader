@@ -14,10 +14,10 @@ class FineuploaderAsset extends AssetBundle {
 
     public $sourcePath = '@harrytang/fineuploader/assets';
     public $js=[
-        'jquery.fineuploader/jquery.fineuploader.min.js'
+        'jquery.fine-uploader/jquery.fine-uploader.min.js'
     ];
     public $css = [
-        'jquery.fineuploader/fineuploader.min.css',
+        'jquery.fine-uploader/fine-uploader.min.css',
     ];
     public $depends = [
         'yii\web\JqueryAsset',
