@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist harrytang/yii2-fineuploader "*"
+php composer.phar require --prefer-dist modernkernel/yii2-fineuploader "*"
 ```
 
 or add
 
 ```
-"harrytang/yii2-fineuploader": "*"
+"modernkernel/yii2-fineuploader": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -25,7 +25,7 @@ VIEW FILE
 ---------
 ```
 <div class="uploader"></div>
-<?= harrytang\fineuploader\Fineuploader::widget([
+<?= modernkernel\fineuploader\Fineuploader::widget([
         'options' => [
             'request' => [
                 'endpoint' => Yii::$app->urlManager->createUrl(['/your-handler']),

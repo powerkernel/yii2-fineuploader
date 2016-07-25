@@ -5,14 +5,18 @@
  * @copyright: Grey Neuron
  */
 
-namespace harrytang\fineuploader;
+namespace modernkernel\fineuploader;
 
 
 use yii\web\AssetBundle;
 
+/**
+ * Class FineuploaderAsset
+ * @package harrytang\fineuploader
+ */
 class FineuploaderAsset extends AssetBundle {
 
-    public $sourcePath = '@harrytang/fineuploader/assets';
+    public $sourcePath = '@modernkernel/fineuploader/assets';
     public $js=[
         'jquery.fine-uploader/jquery.fine-uploader.min.js'
     ];

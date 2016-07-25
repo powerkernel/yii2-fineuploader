@@ -1,6 +1,6 @@
 {
     "name": "modernkernel/yii2-fineuploader",
-    "description": "Yii2 Fine Uploader",
+    "description": "Fine Uploader extension for Yii2",
     "type": "yii2-extension",
     "keywords": ["yii2","extension", "fineuploader"],
     "license": "Apache-2.0",
@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "npm-asset/fine-uploader" : "*"
     },
     "autoload": {
         "psr-4": {

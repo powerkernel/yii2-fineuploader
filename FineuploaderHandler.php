@@ -5,9 +5,13 @@
  * @copyright: Grey Neuron
  */
 
-namespace harrytang\fineuploader;
+namespace modernkernel\fineuploader;
 require __DIR__.'/server/traditional/handler.php';
 
+/**
+ * Class FineuploaderHandler
+ * @package modernkernel\fineuploader
+ */
 class FineuploaderHandler extends \UploadHandler {
 
 } 

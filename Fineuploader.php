@@ -5,13 +5,17 @@
  * @copyright: Grey Neuron
  */
 
-namespace harrytang\fineuploader;
+namespace modernkernel\fineuploader;
 
 
 use yii\base\Widget;
 use yii\helpers\Json;
 use yii\web\View;
 
+/**
+ * Class Fineuploader
+ * @package modernkernel\fineuploader
+ */
 class Fineuploader extends Widget
 {
 
