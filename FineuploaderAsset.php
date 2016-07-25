@@ -1,8 +1,8 @@
 <?php
-/** 
- * @author: Harry Tang (giaduy@gmail.com)
- * @link: http://www.greyneuron.com 
- * @copyright: Grey Neuron
+/**
+ * @author Harry Tang <harry@modernkernel.com>
+ * @link https://modernkernel.com
+ * @copyright Copyright (c) 2016 Modern Kernel
  */
 
 namespace modernkernel\fineuploader;
@@ -14,14 +14,15 @@ use yii\web\AssetBundle;
  * Class FineuploaderAsset
  * @package harrytang\fineuploader
  */
-class FineuploaderAsset extends AssetBundle {
+class FineuploaderAsset extends AssetBundle
+{
 
-    public $sourcePath = '@modernkernel/fineuploader/assets';
-    public $js=[
-        'jquery.fine-uploader/jquery.fine-uploader.min.js'
+    public $sourcePath = '@npm/fine-uploader/jquery.fine-uploader';
+    public $js = [
+        'jquery.fine-uploader.min.js'
     ];
     public $css = [
-        'jquery.fine-uploader/fine-uploader.min.css',
+        'fine-uploader-new.min.css',
     ];
     public $depends = [
         'yii\web\JqueryAsset',

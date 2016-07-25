@@ -1,8 +1,8 @@
 <?php
 /**
- * @author: Harry Tang (giaduy@gmail.com)
- * @link: http://www.greyneuron.com
- * @copyright: Grey Neuron
+ * @author Harry Tang <harry@modernkernel.com>
+ * @link https://modernkernel.com
+ * @copyright Copyright (c) 2016 Modern Kernel
  */
 
 namespace modernkernel\fineuploader;
@@ -10,7 +10,6 @@ namespace modernkernel\fineuploader;
 
 use yii\base\Widget;
 use yii\helpers\Json;
-use yii\web\View;
 
 /**
  * Class Fineuploader
@@ -19,52 +18,72 @@ use yii\web\View;
 class Fineuploader extends Widget
 {
 
-    public $selector = '.uploader';
+    public $template='';
 
-    public $dropLabel='Drop here.';
-    public $dropProcessingLabel='Processing dropped file(s)...';
+    /* labels */
+    public $dropLabel = 'Drop your files here';
+    public $dropProcessingLabel = 'Processing dropped file(s)...';
+    public $buttonLabel = 'Upload files';
+    public $cancelLabel = 'Cancel';
+    public $retryLabel = 'Retry';
+    public $deleteLabel = 'Delete';
+    public $pauseLabel = 'Pause';
+    public $closeLabel = 'Close';
+    public $continueLabel = 'Continue';
+    public $yesLabel = 'Yes';
+    public $noLabel = 'No';
+    public $okLabel = 'OK';
+    public $editFilenameLabel = 'Edit filename';
 
-    public $buttonIcon='glyphicon glyphicon-open';
-    public $buttonLabel='Add File(s)';
-    public $cancelLabel='Cancel';
-    public $retryLabel='Retry';
-    public $deleteLabel='Delete';
+    /**
+     * fineuploader options
+     * see http://docs.fineuploader.com/branch/master/
+     * @var []
+     */
+    public $options = []; //
+    public $default_options = [
+        'template' => 'qq-template'
+    ];
 
+    /**
+     * fineuploader events
+     * see http://docs.fineuploader.com/branch/master/
+     * @var []
+     */
+    public $events = [];
+    public $default_events = [
+        'autoRetry' => '',
+        'cancel' => '',
+        'complete' => '',
+        'allComplete' => '',
+        'delete' => '',
+        'deleteComplete' => '',
+        'error' => '',
+        'manualRetry' => '',
+        'pasteReceived' => '',
+        'progress' => '',
+        'resume' => '',
+        'sessionRequestComplete' => '',
+        'statusChange' => '',
+        'submit' => '',
+        'submitDelete' => '',
+        'submitted' => '',
+        'totalProgress' => '',
+        'upload' => '',
+        'uploadChunk' => '',
+        'uploadChunkSuccess' => '',
+        'validate' => '',
+        'validateBatch' => '',
+    ];
 
-    public $options = array();
-    public $default_options = array(
-        'template'=>'qq-template'
-    );
-    public $events = array();
-    public $default_events = array(
-        'autoRetry'=>'',
-        'cancel'=>'',
-        'complete'=>'',
-        'allComplete'=>'',
-        'delete'=>'',
-        'deleteComplete'=>'',
-        'error'=>'',
-        'manualRetry'=>'',
-        'pasteReceived'=>'',
-        'progress'=>'',
-        'resume'=>'',
-        'sessionRequestComplete'=>'',
-        'statusChange'=>'',
-        'submit'=>'',
-        'submitDelete'=>'',
-        'submitted'=>'',
-        'totalProgress'=>'',
-        'upload'=>'',
-        'uploadChunk'=>'',
-        'uploadChunkSuccess'=>'',
-        'validate'=>'',
-        'validateBatch'=>'',
-    );
-
-    public function init(){
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
         parent::init();
-        $this->events=array_merge($this->default_events, $this->events);
-        $this->options=array_merge($this->default_options, $this->options);
+        $this->events = array_merge($this->default_events, $this->events);
+        $this->options = array_merge($this->default_options, $this->options);
     }
 
     /**
@@ -74,46 +93,69 @@ class Fineuploader extends Widget
     {
         $this->registerPlugin();
         $this->registerJS();
+        $id = $this->getId();
+
         echo <<<EOB
-<div>
-    <script type="text/template" id="{$this->options['template']}">
-        <div class="qq-uploader-selector qq-uploader">
-            <div class="qq-upload-drop-area-selector qq-upload-drop-area " qq-hide-dropzone>
-                <span>{$this->dropLabel}</span>
-            </div>
-
-            <div class="qq-upload-button-selector qq-upload-button btn btn-info" style="width: auto;">
-                <span class="{$this->buttonIcon}" aria-hidden="true"></span> {$this->buttonLabel}
-            </div>
-
+<div id="{$id}"></div>          
+<script type="text/template" id="{$this->options['template']}">
+    <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="{$this->dropLabel}">
+        <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+            <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+        </div>
+        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+            <span class="qq-upload-drop-area-text-selector"></span>
+        </div>
+        <div class="qq-upload-button-selector qq-upload-button">
+            <div>{$this->buttonLabel}</div>
+        </div>
             <span class="qq-drop-processing-selector qq-drop-processing">
                 <span>{$this->dropProcessingLabel}</span>
                 <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
             </span>
+        <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+            <li>
+                <div class="qq-progress-bar-container-selector">
+                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                </div>
+                <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                <span class="qq-upload-file-selector qq-upload-file"></span>
+                <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="{$this->editFilenameLabel}"></span>
+                <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                <span class="qq-upload-size-selector qq-upload-size"></span>
+                <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">{$this->cancelLabel}</button>
+                <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">{$this->retryLabel}</button>
+                <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">{$this->deleteLabel}</button>
+                <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+            </li>
+        </ul>
 
-            <ul class="qq-upload-list-selector qq-upload-list margin-top-md">
-                <li class="alert alert-info margin-bottom-lg">
-                    <div class="qq-progress-bar-container-selector">
-                        <div class="qq-progress-bar-selector qq-progress-bar"></div>
-                    </div>
+        <dialog class="qq-alert-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">{$this->closeLabel}</button>
+            </div>
+        </dialog>
 
-                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                    <span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
-                    <span class="qq-upload-file-selector qq-upload-file"></span>
-                    <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text"/>
-                    <span class="qq-upload-size-selector qq-upload-size"></span>
+        <dialog class="qq-confirm-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">{$this->noLabel}</button>
+                <button type="button" class="qq-ok-button-selector">{$this->yesLabel}</button>
+            </div>
+        </dialog>
 
-                    <a class="qq-upload-cancel-selector qq-upload-cancel" href="#">{$this->cancelLabel}</a>
-                    <a class="qq-upload-retry-selector qq-upload-retry" href="#">{$this->retryLabel}</a>
-                    <a class="qq-upload-delete-selector qq-upload-delete" href="#">{$this->deleteLabel}</a>
-
-                    <span class="qq-upload-status-text-selector qq-upload-status-text"></span>
-                </li>
-            </ul>
-        </div>
-    </script>
-</div>
+        <dialog class="qq-prompt-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <input type="text">
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">{$this->cancelLabel}</button>
+                <button type="button" class="qq-ok-button-selector">{$this->okLabel}</button>
+            </div>
+        </dialog>
+    </div>
+</script>
 EOB;
+
     }
 
     /**
@@ -130,9 +172,10 @@ EOB;
      */
     protected function registerJS()
     {
+        $id = $this->getId();
         $options = Json::encode($this->options);
         $script = <<<EOD
-$("{$this->selector}").fineUploader({$options})
+$("#{$id}").fineUploader({$options})
 .on("autoRetry", function(event, id, name){{$this->events['autoRetry']}})
 .on("cancel", function(event, id, name){{$this->events['cancel']}})
 .on("complete", function(event, id, name, responseJSON){{$this->events['complete']}})
@@ -155,7 +198,7 @@ $("{$this->selector}").fineUploader({$options})
 .on("validate", function(event, id, name){{$this->events['validate']}})
 .on("validateBatch", function(event, id, name){{$this->events['validateBatch']}})
 EOD;
-        $this->getView()->registerJs($script, View::POS_READY, __CLASS__.$this->selector);
-        
+        $this->getView()->registerJs($script);
+
     }
 } 
