@@ -1,6 +1,6 @@
 Yii2 Fine Uploader
 ==================
-Yii2 Fine Uploader
+Fine Uploader extension for Yii2
 
 Installation
 ------------
@@ -27,7 +27,7 @@ Usage
  
 Once the extension is installed, simply use it in your code by :
 
-#View
+**View**
 ```
 <?= modernkernel\fineuploader\Fineuploader::widget([
     'options' => [
@@ -53,5 +53,5 @@ Once the extension is installed, simply use it in your code by :
 ?>
 ```
 
-#Controller
+**Controller**
 see https://github.com/FineUploader/php-traditional-server
