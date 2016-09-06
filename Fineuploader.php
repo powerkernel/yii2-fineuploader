@@ -105,7 +105,7 @@ class Fineuploader extends Widget
         <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
             <span class="qq-upload-drop-area-text-selector"></span>
         </div>
-        <div class="qq-upload-button-selector qq-upload-button">
+        <div class="qq-upload-button-selector qq-upload-button" style="width: auto">
             <div>{$this->buttonLabel}</div>
         </div>
             <span class="qq-drop-processing-selector qq-drop-processing">
