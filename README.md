@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist modernkernel/yii2-fineuploader "*"
+php composer.phar require --prefer-dist powerkernel/yii2-fineuploader "*"
 ```
 
 or add
 
 ```
-"modernkernel/yii2-fineuploader": "*"
+"powerkernel/yii2-fineuploader": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -29,7 +29,7 @@ Once the extension is installed, simply use it in your code by :
 
 **View**
 ```
-<?= modernkernel\fineuploader\Fineuploader::widget([
+<?= powerkernel\fineuploader\Fineuploader::widget([
     'options' => [
         'request' => [
             'endpoint' => Yii::$app->urlManager->createUrl(['/your-handler-url']),
