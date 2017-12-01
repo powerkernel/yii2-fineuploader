@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2017 Power Kernel
  */
 
-namespace modernkernel\fineuploader;
+namespace powerkernel\fineuploader;
 
 
 use yii\base\Widget;
@@ -13,7 +13,7 @@ use yii\helpers\Json;
 
 /**
  * Class Fineuploader
- * @package modernkernel\fineuploader
+ * @package powerkernel\fineuploader
  */
 class Fineuploader extends Widget
 {
