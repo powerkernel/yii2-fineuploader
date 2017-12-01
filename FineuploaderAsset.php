@@ -5,14 +5,14 @@
  * @copyright Copyright (c) 2017 Power Kernel
  */
 
-namespace modernkernel\fineuploader;
+namespace powerkernel\fineuploader;
 
 
 use yii\web\AssetBundle;
 
 /**
  * Class FineuploaderAsset
- * @package harrytang\fineuploader
+ * @package powerkernel\fineuploader
  */
 class FineuploaderAsset extends AssetBundle
 {
