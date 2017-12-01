@@ -1,5 +1,5 @@
 {
-    "name": "modernkernel/yii2-fineuploader",
+    "name": "powerkernel/yii2-fineuploader",
     "description": "Fine Uploader extension for Yii2",
     "type": "yii2-extension",
     "keywords": ["yii2","extension", "fineuploader"],
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "modernkernel\\fineuploader\\": ""
+            "powerkernel\\fineuploader\\": ""
         }
     }
 }
